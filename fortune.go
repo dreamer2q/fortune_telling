@@ -29,6 +29,8 @@ type Sign struct {
 var fileJson = "signs.json"
 var signs sliceSign
 var isAsked map[string]int
+var resetTime time.Time
+var resetTimer  = time.NewTicker(1*time.Minute)
 
 func init() {
 	if !exist(fileJson) {
@@ -49,10 +51,29 @@ func init() {
 
 	rand.Seed(time.Now().Unix())
 	ResetData()
+	SetResetTime(time.Date(0,00,0,23,30,0,0,time.Local))
+	go doReset()
 }
 
 func ResetData(){
 	isAsked = make(map[string]int,0)
+}
+
+func SetResetTime(reset time.Time) {
+	resetTime = reset
+}
+
+func doReset(){
+	for{
+		select {
+		case curr:=<-resetTimer.C:
+			if curr.Hour() == resetTime.Hour() && curr.Minute() == resetTime.Minute() {
+				ResetData()
+				//fmt.Println("Do reset")
+			}
+			//fmt.Println(curr)
+		}
+	}
 }
 
 func AskSign(key string) (Sign, error) {
