@@ -13,18 +13,14 @@ import (
 	"time"
 )
 
-type sliceSign []struct {
-	Ji     string
-	Qianci string
-	Jie1   string
-	Jie2   string
-}
 type Sign struct {
 	Ji     string
 	Qianci string
 	Jie1   string
 	Jie2   string
 }
+
+type sliceSign []Sign
 
 var fileJson = "signs.json"
 var signs sliceSign
