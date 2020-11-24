@@ -2,7 +2,6 @@ package fortune_telling
 
 import (
 	"encoding/json"
-	"io/ioutil"
 	"math/rand"
 	"time"
 )
@@ -26,11 +25,11 @@ var (
 )
 
 func init() {
-	content, err := ioutil.ReadFile(fileJson)
-	if err != nil {
-		panic(err)
-	}
-	err = json.Unmarshal(content, &signs)
+	//content, err := ioutil.ReadFile(fileJson)
+	//if err != nil {
+	//	panic(err)
+	//}
+	err := json.Unmarshal([]byte(signData), &signs)
 	if err != nil {
 		panic(err)
 	}
