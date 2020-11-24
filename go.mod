@@ -1,4 +1,4 @@
-module fortune_telling
+module github.com/dreamer2q/fortune_telling
 
 go 1.15
 
