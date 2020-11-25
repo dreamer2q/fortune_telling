@@ -29,12 +29,18 @@ func genTelling() Telling {
 	return signs[index]
 }
 
-func (t Telling) String(Ji string) string {
-	var count = levelMap[Ji]
-	var ret string
+func (t Telling) String() string {
+	return LevelStars(t.Level)
+}
+
+func LevelStars(l string) string {
+	var (
+		sep = levelMap[l]
+		ret string
+	)
 	for i := 0; i < 6; i++ {
 		var cell string
-		if i < count {
+		if i < sep {
 			cell = "★"
 		} else {
 			cell = "☆"
