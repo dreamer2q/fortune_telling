@@ -25,10 +25,6 @@ var (
 )
 
 func init() {
-	//content, err := ioutil.ReadFile(fileJson)
-	//if err != nil {
-	//	panic(err)
-	//}
 	err := json.Unmarshal([]byte(signData), &signs)
 	if err != nil {
 		panic(err)
